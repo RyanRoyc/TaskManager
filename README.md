@@ -63,6 +63,7 @@ CREATE TABLE activity_log (
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     user_id INTEGER NOT NULL REFERENCES users(id)
 );
+```sql
 
 ## Project Structure
 ```plaintext
