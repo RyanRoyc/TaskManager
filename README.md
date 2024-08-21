@@ -27,7 +27,6 @@ The Task Management System is a web application designed to help users manage th
 
 ## Project Structure
 
-```plaintext
 TaskManager/
 ├── src/
 │   ├── main/
