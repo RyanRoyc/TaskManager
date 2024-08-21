@@ -25,8 +25,47 @@ The Task Management System is a web application designed to help users manage th
 - **Dependencies:** Jakarta Servlet API, PostgreSQL JDBC Driver
 - **Web Server:** Apache Tomcat
 
-## Project Structure
+## Database Setup
 
+### Database Configuration
+The application uses PostgreSQL as the database. Below are the database details:
+
+- **Database Name:** taskmanager
+- **Username:** postgres
+- **Password:** pineapples
+- **Driver Class Name:** `org.postgresql.Driver`
+
+### SQL Schema
+Use the following SQL commands to create the necessary tables for the application.
+
+```sql
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL
+);
+
+CREATE TABLE tasks (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    due_date DATE NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    priority VARCHAR(50) NOT NULL,
+    completed BOOLEAN DEFAULT FALSE,
+    deleted BOOLEAN DEFAULT FALSE,
+    user_id INTEGER NOT NULL REFERENCES users(id)
+);
+
+CREATE TABLE activity_log (
+    id SERIAL PRIMARY KEY,
+    action VARCHAR(255) NOT NULL,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    user_id INTEGER NOT NULL REFERENCES users(id)
+);
+
+## Project Structure
+```plaintext
 TaskManager/
 ├── src/
 │   ├── main/
@@ -66,43 +105,3 @@ TaskManager/
 │   │   ├── css/
 │   │   │   ├── style.css
 │   │   ├── index.jsp
-
-
-## Database Setup
-
-### Database Configuration
-The application uses PostgreSQL as the database. Below are the database details:
-
-- **Database Name:** taskmanager
-- **Username:** postgres
-- **Password:** pineapples
-- **Driver Class Name:** `org.postgresql.Driver`
-
-### SQL Schema
-Use the following SQL commands to create the necessary tables for the application.
-
-```sql
-CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
-    username VARCHAR(255) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL
-);
-
-CREATE TABLE tasks (
-    id SERIAL PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    due_date DATE NOT NULL,
-    category VARCHAR(255) NOT NULL,
-    priority VARCHAR(50) NOT NULL,
-    completed BOOLEAN DEFAULT FALSE,
-    deleted BOOLEAN DEFAULT FALSE,
-    user_id INTEGER NOT NULL REFERENCES users(id)
-);
-
-CREATE TABLE activity_log (
-    id SERIAL PRIMARY KEY,
-    action VARCHAR(255) NOT NULL,
-    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    user_id INTEGER NOT NULL REFERENCES users(id)
-);
