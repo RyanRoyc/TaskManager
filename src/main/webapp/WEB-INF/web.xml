@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee 
+         https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+         
+  	<welcome-file-list>  
+   		<welcome-file>index.jsp</welcome-file>  
+  	</welcome-file-list>  
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>com.taskmanager.controller.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/RegisterServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.taskmanager.controller.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>com.taskmanager.controller.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>TaskServlet</servlet-name>
+        <servlet-class>com.taskmanager.controller.TaskServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TaskServlet</servlet-name>
+        <url-pattern>/TaskServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ProfileServlet</servlet-name>
+        <servlet-class>com.taskmanager.controller.ProfileServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProfileServlet</servlet-name>
+        <url-pattern>/ProfileServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ArchiveServlet</servlet-name>
+        <servlet-class>com.taskmanager.controller.ArchiveServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ArchiveServlet</servlet-name>
+        <url-pattern>/ArchiveServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>DeletedTasksServlet</servlet-name>
+        <servlet-class>com.taskmanager.controller.DeletedTasksServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeletedTasksServlet</servlet-name>
+        <url-pattern>/DeletedTasksServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ActivityLogServlet</servlet-name>
+        <servlet-class>com.taskmanager.controller.ActivityLogServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ActivityLogServlet</servlet-name>
+        <url-pattern>/ActivityLogServlet</url-pattern>
+    </servlet-mapping>
+    
+</web-app>
