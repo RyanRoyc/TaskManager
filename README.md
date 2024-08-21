@@ -41,68 +41,24 @@ Use the following SQL commands to create the necessary tables for the applicatio
 ```sql
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
-    username VARCHAR(255) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL
+    username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE tasks (
     id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users(id),
     title VARCHAR(255) NOT NULL,
     due_date DATE NOT NULL,
-    category VARCHAR(255) NOT NULL,
-    priority VARCHAR(50) NOT NULL,
-    completed BOOLEAN DEFAULT FALSE,
-    deleted BOOLEAN DEFAULT FALSE,
-    user_id INTEGER NOT NULL REFERENCES users(id)
+    category VARCHAR(50),
+    priority VARCHAR(20),
+    status VARCHAR(20) DEFAULT 'active'
 );
 
 CREATE TABLE activity_log (
     id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users(id),
     action VARCHAR(255) NOT NULL,
-    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    user_id INTEGER NOT NULL REFERENCES users(id)
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-```sql
-
-## Project Structure
-```plaintext
-TaskManager/
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   ├── com/
-│   │   │   │   ├── taskmanager/
-│   │   │   │   │   ├── controller/
-│   │   │   │   │   │   ├── RegisterServlet.java
-│   │   │   │   │   │   ├── LoginServlet.java
-│   │   │   │   │   │   ├── LogoutServlet.java
-│   │   │   │   │   │   ├── TaskServlet.java
-│   │   │   │   │   │   ├── ProfileServlet.java
-│   │   │   │   │   │   ├── ArchiveServlet.java
-│   │   │   │   │   │   ├── DeletedTasksServlet.java
-│   │   │   │   │   │   ├── ActivityLogServlet.java
-│   │   │   │   │   ├── dao/
-│   │   │   │   │   │   ├── UserDAO.java
-│   │   │   │   │   │   ├── TaskDAO.java
-│   │   │   │   │   │   ├── ActivityLogDAO.java
-│   │   │   │   │   ├── model/
-│   │   │   │   │   │   ├── User.java
-│   │   │   │   │   │   ├── Task.java
-│   │   │   │   │   │   ├── ActivityLog.java
-│   │   │           └── util/
-│   │   │               └── DBConnection.java
-│   ├── webapp/
-│   │   ├── WEB-INF/
-│   │   │   ├── web.xml
-│   │   ├── jsp/
-│   │   │   ├── register.jsp
-│   │   │   ├── login.jsp
-│   │   │   ├── tasks.jsp
-│   │   │   ├── profile.jsp
-│   │   │   ├── archived_tasks.jsp
-│   │   │   ├── deleted_tasks.jsp
-│   │   │   ├── activity_log.jsp
-│   │   ├── css/
-│   │   │   ├── style.css
-│   │   ├── index.jsp
